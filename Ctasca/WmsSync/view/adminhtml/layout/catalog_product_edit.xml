@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="catalog_product_edit"/>
+    <body>
+        <referenceContainer name="page.content">
+            <block class="Ctasca\WmsSync\Block\Adminhtml\Product\Edit\Button\SyncWithWms\ClickHandler" template="Ctasca_WmsSync::wms-sync/click-handler.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Ctasca\WmsSync\ViewModel\WmsSync</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

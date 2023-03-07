@@ -33,7 +33,7 @@ class Logger extends \Monolog\Logger
     public function info($message, array $context = []): void
     {
         if ($this->isLoggingEnabled()) {
-            rparent::info($message, $context);
+            parent::info($message, $context);
         }
     }
 

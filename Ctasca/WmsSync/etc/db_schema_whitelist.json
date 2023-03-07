@@ -1,0 +1,14 @@
+{
+    "wms_sync_request": {
+        "column": {
+            "request_id": true,
+            "response_status_code": true,
+            "wms_quantity": true,
+            "error_message": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

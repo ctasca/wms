@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="wms_sync_request" resource="default" engine="innodb" comment="Delivery Addresses Blacklist Table">
+        <column xsi:type="int" name="request_id" unsigned="true" padding="10" nullable="false" identity="true" comment="Request ID"/>
+        <column xsi:type="smallint" padding="3" name="response_status_code" unsigned="true" nullable="false" identity="false" default="0" comment="Response Status Code"/>
+        <column xsi:type="int" padding="10" name="wms_quantity" unsigned="true" nullable="false" identity="false" default="0" comment="WMS Sync Quantity"/>
+        <column xsi:type="text" name="error_message" comment="Error Message" nullable="true"/>
+        <column xsi:type="datetime" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="false" comment="Request Datetime" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="request_id"/>
+        </constraint>
+    </table>
+</schema>

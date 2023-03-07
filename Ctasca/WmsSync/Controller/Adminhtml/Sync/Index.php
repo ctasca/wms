@@ -16,6 +16,7 @@ use Ctasca\WmsSync\Logger\Logger;
 class Index extends Action implements HttpPostActionInterface
 {
     const ADMIN_RESOURCE = 'Ctasca_WmsSync::sync';
+    private static int $errorFaker = 0;
 
     /**
      * @param Context $context
@@ -41,6 +42,7 @@ class Index extends Action implements HttpPostActionInterface
      */
     public function execute(): Json
     {
+        static::$errorFaker = rand(1, 4);
         $jsonResponse = $this->jsonFactory->create();
         $endpointResponse = $this->client->call($this->getProductSku());
         $this->logger->info(
@@ -51,14 +53,24 @@ class Index extends Action implements HttpPostActionInterface
             "Endpoint Response Status Code",
             [$endpointResponse->getStatusCode()]
         );
+        $this->logger->info(
+            "Error Faker Number",
+            [static::$errorFaker]
+        );
         return $jsonResponse->setData(["result" => $this->jsonSerializer->unserialize($endpointResponse->getBody())]);
     }
 
     /**
+     * Returns product sku if the remainder of execute counter divided by 3 is not 0.
+     * Allows to simulate an error on the endpoint by not passing the product SKU to the API endpoint.
+     *
      * @return string
      */
     private function getProductSku(): string
     {
+        if (static::$errorFaker % 3 === 0) {
+            return '';
+        }
         return $this->request->getParam('sku');
     }
 }

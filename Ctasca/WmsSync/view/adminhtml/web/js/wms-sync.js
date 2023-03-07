@@ -24,6 +24,9 @@ define([
             this._bind();
         },
 
+        /**
+         * @private
+         */
         _bind: function () {
             const self = this;
             $(self.options.selectors.wmsSyncButtonId).on("click", function (event) {
@@ -42,8 +45,27 @@ define([
                 method: 'post',
                 data: { "sku": self.options.productSku }
             }).success(function(response) {
-                console.log(response.result)
+                if (response.result.result === 'success') {
+                    self._updateQuantityInputValue(response.result.quantity);
+                }
+                if (response.result.result === 'error') {
+
+                }
+                // keeping this console log for debugging purposes
+                console.log(response.result);
             })
+        },
+
+        /**
+         * Updates quantity input with new qty
+         *
+         * @param value
+         * @private
+         */
+        _updateQuantityInputValue: function(value) {
+            const self = this;
+            let $input = $(self.options.selectors.quantityInputName);
+            $input.val(value);
         }
     });
 

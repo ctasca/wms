@@ -48,16 +48,6 @@ class Logger extends \Monolog\Logger
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function debug($message, array $context = []): void
-    {
-        if ($this->isLoggingEnabled()) {
-            parent::debug($message, $context);
-        }
-    }
-
-    /**
      * @return bool
      */
     private function isLoggingEnabled(): bool

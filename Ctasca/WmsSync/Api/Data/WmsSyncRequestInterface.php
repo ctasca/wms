@@ -10,6 +10,7 @@ interface WmsSyncRequestInterface extends ExtensibleDataInterface
     const REQUEST_ID = 'request_id';
     const RESPONSE_STATUS_CODE = 'response_status_code';
     const WMS_QUANTITY = 'wms_quantity';
+    const SKU = 'sku';
     const ERROR_MESSAGE = 'error_message';
 
     /**
@@ -28,9 +29,14 @@ interface WmsSyncRequestInterface extends ExtensibleDataInterface
     public function getWmsQuantity(): int;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getErrorMessage(): string;
+    public function getSku(): string|null;
+
+    /**
+     * @return string|null
+     */
+    public function getErrorMessage(): string|null;
 
     /**
      * @param int $statusCode
@@ -43,6 +49,12 @@ interface WmsSyncRequestInterface extends ExtensibleDataInterface
      * @return WmsSyncRequestInterface
      */
     public function setWmsQuantity(int $quantity): WmsSyncRequestInterface;
+
+    /**
+     * @param string $sku
+     * @return WmsSyncRequestInterface
+     */
+    public function setSku(string $sku): WmsSyncRequestInterface;
 
     /**
      * @param string $errorMessage

@@ -41,6 +41,14 @@ class WmsSyncRequest extends AbstractModel implements WmsSyncRequestInterface
     /**
      * @inerhitDoc
      */
+    public function getSku(): string|null
+    {
+        return $this->getData(self::SKU);
+    }
+
+    /**
+     * @inerhitDoc
+     */
     public function getErrorMessage(): string
     {
         return (string) $this->getData(self::ERROR_MESSAGE);
@@ -60,6 +68,14 @@ class WmsSyncRequest extends AbstractModel implements WmsSyncRequestInterface
     public function setWmsQuantity(int $quantity): WmsSyncRequestInterface
     {
         return $this->setData(self::WMS_QUANTITY, $quantity);
+    }
+
+    /**
+     * @inerhitDoc
+     */
+    public function setSku(string $sku): WmsSyncRequestInterface
+    {
+        return $this->setData(self::SKU, $sku);
     }
 
     /**

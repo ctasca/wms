@@ -10,7 +10,10 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Serialize\Serializer\Json as JsonSerializer;
+use Ctasca\WmsSync\Model\Wms\ClientFactory;
 use Ctasca\WmsSync\Model\Wms\Client;
+use Ctasca\WmsSync\Api\WmsSyncRequestRepositoryInterface;
+use Ctasca\WmsSync\Api\Data\WmsSyncRequestInterface;
 use Ctasca\WmsSync\Logger\Logger;
 
 class Index extends Action implements HttpPostActionInterface
@@ -23,7 +26,9 @@ class Index extends Action implements HttpPostActionInterface
      * @param RequestInterface $request
      * @param JsonFactory $jsonFactory
      * @param JsonSerializer $jsonSerializer
-     * @param Client $client
+     * @param ClientFactory $clientFactory
+     * @param WmsSyncRequestRepositoryInterface $syncRequestRepository
+     * @param WmsSyncRequestInterface $wmsSyncRequest
      * @param Logger $logger
      */
     public function __construct(
@@ -31,7 +36,9 @@ class Index extends Action implements HttpPostActionInterface
         private readonly RequestInterface $request,
         private readonly JsonFactory $jsonFactory,
         private readonly JsonSerializer $jsonSerializer,
-        private readonly Client $client,
+        private readonly ClientFactory $clientFactory,
+        private readonly WmsSyncRequestRepositoryInterface $syncRequestRepository,
+        private readonly WmsSyncRequestInterface $wmsSyncRequest,
         private readonly Logger $logger
     ){
         parent::__construct($context);
@@ -44,20 +51,40 @@ class Index extends Action implements HttpPostActionInterface
     {
         static::$errorFaker = rand(1, 4);
         $jsonResponse = $this->jsonFactory->create();
-        $endpointResponse = $this->client->call($this->getProductSku());
-        $this->logger->info(
-            "Endpoint Response",
-            $this->jsonSerializer->unserialize($endpointResponse->getBody())
-        );
-        $this->logger->info(
-            "Endpoint Response Status Code",
-            [$endpointResponse->getStatusCode()]
-        );
-        $this->logger->info(
-            "Error Faker Number",
-            [static::$errorFaker]
-        );
-        return $jsonResponse->setData(["result" => $this->jsonSerializer->unserialize($endpointResponse->getBody())]);
+        /** @var Client $client */
+        $client = $this->clientFactory->create();
+        $endpointResponse = $client->call($this->getProductSku());
+        if ($endpointResponse->getBody()) {
+            $unserializedResponse = $this->jsonSerializer->unserialize($endpointResponse->getBody());
+            $this->saveEndpointResponseToRepository($unserializedResponse, $endpointResponse->getStatusCode());
+            $this->logger->info(
+                "Endpoint Response",
+                $unserializedResponse
+            );
+            $this->logger->info(
+                "Endpoint Response Status Code",
+                [$endpointResponse->getStatusCode()]
+            );
+            $this->logger->info(
+                "Error Faker Number",
+                [static::$errorFaker]
+            );
+            return $jsonResponse->setData(["result" => $unserializedResponse]);
+        }
+        return $jsonResponse->setData(["result" => null]);
+    }
+
+    private function saveEndpointResponseToRepository(array $response, int $responseStatusCode)
+    {
+        if ($response['result'] === 'success') {
+            $this->wmsSyncRequest->setSku($response['sku']);
+            $this->wmsSyncRequest->setWmsQuantity((int)$response['quantity']);
+            $this->wmsSyncRequest->setResponseStatusCode($responseStatusCode);
+        } else {
+            $this->wmsSyncRequest->setResponseStatusCode($responseStatusCode);
+            $this->wmsSyncRequest->setErrorMessage($response['error']);
+        }
+        $this->syncRequestRepository->save($this->wmsSyncRequest);
     }
 
     /**

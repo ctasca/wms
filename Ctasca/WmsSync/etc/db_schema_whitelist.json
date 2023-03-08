@@ -4,6 +4,7 @@
             "request_id": true,
             "response_status_code": true,
             "wms_quantity": true,
+            "sku": true,
             "error_message": true,
             "created_at": true
         },

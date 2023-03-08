@@ -81,6 +81,7 @@ class Index extends Action implements HttpPostActionInterface
             $this->wmsSyncRequest->setWmsQuantity((int)$response['quantity']);
             $this->wmsSyncRequest->setResponseStatusCode($responseStatusCode);
         } else {
+            $this->wmsSyncRequest->setSku($this->request->getParam('sku'));
             $this->wmsSyncRequest->setResponseStatusCode($responseStatusCode);
             $this->wmsSyncRequest->setErrorMessage($response['error']);
         }

@@ -8,6 +8,7 @@ PHP 8.1.6
 
 ## Installation
 - Download source code from ...
+- Extract archive in Magento's `app/code` directory
 - Enable the module with `bin/magento module:enable Ctasca_WmsSync`
 - Run setup upgrade with `bin/magento setup:upgrade`
 

@@ -16,6 +16,12 @@ PHP 8.1.6
 ## Configuration
 No configuration required. Default configuration values are set in module's `config.xml` file.
 
+## Logger file
+Module's logs are found in `var/log//wms-sync.log`
+
+## Testing Error
+In order to test an error response, continue clicking the "Sync with WMS" button until you get the error's modal alert.
+
 ## Module Screenshots
 
 ![Screenshot 2023-03-08 at 10 29 47](https://user-images.githubusercontent.com/1621171/223678144-e1da1624-a771-442a-a672-06f509bac032.png)
@@ -25,3 +31,5 @@ No configuration required. Default configuration values are set in module's `con
 ![Screenshot 2023-03-08 at 10 30 16](https://user-images.githubusercontent.com/1621171/223678409-69965149-f967-4026-b8ef-1ea17281a8e1.png)
 
 ![Screenshot 2023-03-08 at 10 37 12](https://user-images.githubusercontent.com/1621171/223678446-855633b0-1b7a-4d34-9fd8-0bf0e1c7de18.png)
+
+![Screenshot 2023-03-08 at 10 52 53](https://user-images.githubusercontent.com/1621171/223680758-21392cf1-d1f5-4888-99b4-55bdd82f60fa.png)

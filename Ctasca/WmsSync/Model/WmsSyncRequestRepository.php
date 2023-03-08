@@ -25,15 +25,16 @@ class WmsSyncRequestRepository implements WmsSyncRequestRepositoryInterface
     ){}
 
     /**
-     * @param $id
+     * @param int $id
      * @return WmsSyncRequestInterface
      * @throws NoSuchEntityException
      */
-    public function getById($id): WmsSyncRequestInterface
+    public function getById(int $id): WmsSyncRequestInterface
     {
+        /** @var \Ctasca\WmsSync\Model\WmsSyncRequest $wmsSyncRequest */
         $wmsSyncRequest = $this->wmsSyncRequestFactory->create();
         $this->wmsSyncRequestResource->load($wmsSyncRequest, $id);
-        if (!$wmsSyncRequest->getEntityId()) {
+        if (!$wmsSyncRequest->getRequestId()) {
             throw new NoSuchEntityException(__('Entity with id "%1" does not exist.', $id));
         }
 

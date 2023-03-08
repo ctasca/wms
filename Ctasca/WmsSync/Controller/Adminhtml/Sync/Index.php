@@ -74,7 +74,12 @@ class Index extends Action implements HttpPostActionInterface
         return $jsonResponse->setData(["result" => null]);
     }
 
-    private function saveEndpointResponseToRepository(array $response, int $responseStatusCode)
+    /**
+     * @param array $response
+     * @param int $responseStatusCode
+     * @return void
+     */
+    private function saveEndpointResponseToRepository(array $response, int $responseStatusCode): void
     {
         if ($response['result'] === 'success') {
             $this->wmsSyncRequest->setSku($response['sku']);

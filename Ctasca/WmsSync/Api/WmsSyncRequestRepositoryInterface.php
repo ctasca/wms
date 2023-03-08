@@ -11,11 +11,11 @@ use Ctasca\WmsSync\Api\Data\WmsSyncRequestSearchResultInterface;
 interface WmsSyncRequestRepositoryInterface
 {
     /**
-     * @param $id
+     * @param int $id
      * @return WmsSyncRequestInterface
      * @throws NoSuchEntityException
      */
-    public function getById($id): WmsSyncRequestInterface;
+    public function getById(int $id): WmsSyncRequestInterface;
 
     /**
      * @param WmsSyncRequestInterface $wmsSyncRequest

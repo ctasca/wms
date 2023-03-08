@@ -5,6 +5,7 @@
             <settings>
                 <enable_logging>1</enable_logging>
                 <sync_endpoint><![CDATA[https://syncwms.proxy.beeceptor.com/wms/get/quantity/]]></sync_endpoint>
+                <sync_product_types>simple</sync_product_types>
             </settings>
         </wmssync>
     </default>

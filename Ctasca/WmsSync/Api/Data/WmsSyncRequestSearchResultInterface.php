@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Ctasca\WmsSync\Api\Data;
 
 use Magento\Framework\Api\SearchResultsInterface;
-use Magento\Framework\Api\SearchResults;
 
 interface WmsSyncRequestSearchResultInterface extends SearchResultsInterface
 {

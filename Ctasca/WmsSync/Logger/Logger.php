@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Ctasca\WmsSync\Logger;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class Logger extends \Monolog\Logger
 {
@@ -52,6 +53,6 @@ class Logger extends \Monolog\Logger
      */
     private function isLoggingEnabled(): bool
     {
-        return (bool) $this->scopeConfig->getValue(self::LOGGING_ENABLED_CONFIG_PATH);
+        return (bool) $this->scopeConfig->getValue(self::LOGGING_ENABLED_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
 }

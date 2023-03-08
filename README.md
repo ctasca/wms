@@ -8,8 +8,7 @@ PHP 8.1.6
 
 ## Installation
 - Download source code archive from repository's tag directory https://github.com/ctasca/wms/tags
-- Extract archive in Magento's `app/code` directory
-- (Optional) Remove `README.md` from `app/code` directory
+- Extract the archive and copy recursively `Ctasca` directory in Magento's `app/code` directory
 - Enable the module with `bin/magento module:enable Ctasca_WmsSync`
 - Run setup upgrade with `bin/magento setup:upgrade`
 

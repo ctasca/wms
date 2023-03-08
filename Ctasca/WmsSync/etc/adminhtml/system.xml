@@ -10,14 +10,19 @@
             <resource>Ctasca_WmsSync::wms_config</resource>
             <group id="settings" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10">
                 <label>Settings</label>
-                <field id="enable_logging" translate="label comment" type="select" showInDefault="1" showInStore="1" showInWebsite="1">
+                <field id="enable_logging" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInStore="1" showInWebsite="1">
                     <label>Enable Logging</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[Enable\Disable logging. Logs are written to <code>'/var/log/wms-sync.log'</code>. Default value is <strong>Yes</strong>.]]></comment>
                 </field>
-                <field id="sync_endpoint" translate="label comment" type="text" showInDefault="1" showInStore="1" showInWebsite="1">
+                <field id="sync_endpoint" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInStore="1" showInWebsite="1">
                     <label>WMS Sync Endpoint</label>
                     <comment>WMS API Sync endpoint. Note: must end with forward-slash</comment>
+                </field>
+                <field id="sync_product_types" translate="label comment" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed Sync Product Types</label>
+                    <source_model>Magento\Catalog\Model\Product\Type</source_model>
+                    <comment><![CDATA[Select all product types which allow syncing with WMS]]></comment>
                 </field>
             </group>
         </section>

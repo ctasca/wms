@@ -10,6 +10,7 @@ define([
         options: {
             ajaxPostUrl: null,
             productSku: null,
+            isSyncingAllowed: false,
             selectors: {
                 wmsSyncButtonId: null,
                 quantityInputName: null
@@ -21,7 +22,11 @@ define([
          * @private
          */
         _create: function() {
-            this._bind();
+            if (this.options.isSyncingAllowed) {
+                this._bind();
+            } else {
+                this._removeSyncButton();
+            }
         },
 
         /**
@@ -33,6 +38,14 @@ define([
                 event.preventDefault();
                 self._ajaxPostRequest();
             })
+        },
+
+        /**
+         *
+         * @private
+         */
+        _removeSyncButton: function() {
+            $(this.options.selectors.wmsSyncButtonId).remove();
         },
 
         /**

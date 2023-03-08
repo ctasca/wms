@@ -3,7 +3,6 @@
 /** @var \Ctasca\WmsSync\ViewModel\WmsSync $viewModel */
 $viewModel = $block->getViewModel();
 $product = $viewModel->getProduct();
-
 if ($product !== null):
 ?>
 <script type="text/x-magento-init">
@@ -12,6 +11,7 @@ if ($product !== null):
         "Ctasca_WmsSync/js/wms-sync":{
             "ajaxPostUrl" : "<?= $block->getUrl("wms/sync/index") ?>",
              "productSku" : "<?= $viewModel->getProduct()->getSku() ?>",
+             "isSyncingAllowed" : "<?= $viewModel->isSyncingAllowed($product->getTypeId()) ?>",
              "selectors" : {
                     "quantityInputName" : "input[name='product[quantity_and_stock_status][qty]']",
                     "wmsSyncButtonId" : "#sync_with_wms"

@@ -1,12 +1,16 @@
 # Sync With WMS
 
-## Developement Magento Version
+## Development Magento Version
 Magento ver. 2.4.5-p1 with sample data
 
-## Developement PHP version
+## Development PHP version
 PHP 8.1.6
 
 ## Installation
+- Download source code from ...
+- Enable the module with `bin/magento module:enable Ctasca_WmsSync`
+- Run setup upgrade with `bin/magento setup:upgrade`
+
 
 ## Configuration
 No configuration required. Default configuration values are set in module's `config.xml` file.

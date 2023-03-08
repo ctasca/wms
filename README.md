@@ -33,4 +33,6 @@ In order to test an error response, continue clicking the "Sync with WMS" button
 
 ![Screenshot 2023-03-08 at 10 37 12](https://user-images.githubusercontent.com/1621171/223678446-855633b0-1b7a-4d34-9fd8-0bf0e1c7de18.png)
 
+![Screenshot 2023-03-08 at 10 29 16](https://user-images.githubusercontent.com/1621171/223688010-967a1fe3-48e6-4000-9feb-03470be789f3.png)
+
 ![Screenshot 2023-03-08 at 10 52 53](https://user-images.githubusercontent.com/1621171/223680758-21392cf1-d1f5-4888-99b4-55bdd82f60fa.png)

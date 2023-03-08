@@ -7,8 +7,9 @@ Magento ver. 2.4.5-p1 with sample data
 PHP 8.1.6
 
 ## Installation
-- Download source code from ...
+- Download source code archive from repository's tag directory https://github.com/ctasca/wms/tags
 - Extract archive in Magento's `app/code` directory
+- (Optional) Remove `README.md` from `app/code` directory
 - Enable the module with `bin/magento module:enable Ctasca_WmsSync`
 - Run setup upgrade with `bin/magento setup:upgrade`
 
